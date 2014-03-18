@@ -1,0 +1,7 @@
+ofxOpenCv
+ofxThreadedImageLoader
+ofxXmlSettings
+ofxCv
+ofxDelaunay
+ofxFaceTracker
+ofxVideoRecorder
