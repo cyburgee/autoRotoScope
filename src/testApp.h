@@ -21,33 +21,14 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        void audioIn(float *input, int bufferSize, int nChannels);
     
-        void exit();
+        ofVideoGrabber cam;
     
         ofColor getContourAvgColor(int index, ofPixelsRef pixels);
     
-        ofImage im;
     
-        ofVideoPlayer vidPlayer;
         ofxCv::ContourFinder contourFinder;
         float threshold;
         ofxCv::TrackingColorMode trackingColorMode;
-    
-        ofxCv::FlowFarneback flow;
-        ofMesh mesh;
-        int stepSize, xSteps, ySteps;
-    
-        ofxVideoRecorder    vidRecorder;
-        ofSoundStream       soundStream;
-        bool bRecording;
-        int sampleRate;
-        int channels;
-        string fileName;
-        string fileExt;
-    
-        ofFbo recordFbo;
-        ofPixels recordPixels;
-
 		
 };
