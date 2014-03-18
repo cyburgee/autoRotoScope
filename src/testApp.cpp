@@ -5,11 +5,9 @@ using namespace cv;
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    //cam.initGrabber(ofGetWidth(), ofGetHeight());
     ofSetVerticalSync(true);
 
     vidPlayer.loadMovie("vid/teenconv.mp4");
-    //vidPlayer.play();
     
 	contourFinder.setMinAreaRadius(1);
 	contourFinder.setMaxAreaRadius(70);
@@ -18,7 +16,6 @@ void testApp::setup(){
 	stepSize = 8;
 	ySteps = vidPlayer.getHeight() / stepSize;
 	xSteps = vidPlayer.getWidth() / stepSize;
-	//trackingColorMode = TRACK_COLOR_RGB;
     
     for(int y = 0; y < ySteps; y++) {
 		for(int x = 0; x < xSteps; x++) {
@@ -49,14 +46,6 @@ void testApp::setup(){
     fileExt = ".mp4";
     
     
-    //vidRecorder.setVideoCodec("mpeg4");
-    //vidRecorder.setVideoBitrate("800k");
-    //vidRecorder.setAudioCodec("mp3");
-    //vidRecorder.setAudioBitrate("192k");
-
-    //soundStream.setup(this, 0, channels, sampleRate, 256, 4);
-    
-    
     ofSetWindowShape(vidPlayer.getWidth(), vidPlayer.getHeight());
     
     bRecording = false;
@@ -67,26 +56,6 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 
-    //vidPlayer.update();
-    //if(vidPlayer.isFrameNew()) {
-    /*if(vidPlayer.getCurrentFrame() <= vidPlayer.getTotalNumFrames()) {
-        vidPlayer.nextFrame();
-		flow.setWindowSize(8);
-		flow.calcOpticalFlow(vidPlayer);
-		int i = 0;
-		float distortionStrength = 2;
-		for(int y = 1; y + 1 < ySteps; y++) {
-			for(int x = 1; x + 1 < xSteps; x++) {
-				int i = y * xSteps + x;
-				ofVec2f position(x * stepSize, y * stepSize);
-				ofRectangle area(position - ofVec2f(stepSize, stepSize) / 2, stepSize, stepSize);
-				ofVec2f offset = flow.getAverageFlowInRegion(area);
-				mesh.setVertex(i, position + distortionStrength * offset);
-				i++;
-			}
-		}
-    }*/
-	//}
 }
 
 //--------------------------------------------------------------
@@ -108,132 +77,108 @@ void testApp::draw(){
 				i++;
 			}
 		}
-    ofBackground(0);
-    //cam.update();
-    //vidPlayer.draw(0,0);
-    
-
-    //if (vidPlayer.isFrameNew()) {
-    ofPixelsRef pixels = vidPlayer.getPixelsRef();
-    
-    //ofPixelsRef pixels = cam.getPixelsRef();
-    
-    //threshold = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
-    
-    for(int threshold = 127; threshold >=0; threshold-=30){
-     contourFinder.setThreshold(threshold);
-     contourFinder.setInvert(true);
-     contourFinder.findContours(vidPlayer);
-     for (int k = 0; k < contourFinder.getPolylines().size(); k++){
-         ofPath path;
-         ofPolyline poly = contourFinder.getPolyline(k);
-         for( int i = 0; i < poly.getVertices().size(); i++) {
-             if(i == 0) {
-                 path.newSubPath();
-                 path.moveTo(poly.getVertices()[i] );
-             } else {
-                 path.lineTo( poly.getVertices()[i] );
-             }
-         }
-         path.close();
-         path.simplify();
-         ofColor color = getContourAvgColor(k,pixels);
-         path.setColor(color);
-         path.draw();
-     }
-     //contourFinder.draw();
-    
-     contourFinder.setInvert(false);
-     contourFinder.findContours(vidPlayer);
-     for (int k = 0; k < contourFinder.getPolylines().size(); k++){
-         ofPath path;
-         ofPolyline poly = contourFinder.getPolyline(k);
-         for( int i = 0; i < poly.getVertices().size(); i++) {
-             if(i == 0) {
-                 path.newSubPath();
-                 path.moveTo(poly.getVertices()[i] );
-             } else {
-                 path.lineTo( poly.getVertices()[i] );
-             }
-         }
-         path.close();
-         path.simplify();
-         ofColor color = getContourAvgColor(k,pixels);
-         path.setColor(color);
-         path.draw();
-     }
-     //contourFinder.draw();
-    }
-    
-    for(int threshold = 127; threshold <=255; threshold+=30){
-        contourFinder.setThreshold(threshold);
-        contourFinder.setInvert(true);
-        contourFinder.findContours(vidPlayer);
-        for (int k = 0; k < contourFinder.getPolylines().size(); k++){
-            ofPath path;
-            ofPolyline poly = contourFinder.getPolyline(k);
-            for( int i = 0; i < poly.getVertices().size(); i++) {
-                if(i == 0) {
-                    path.newSubPath();
-                    path.moveTo(poly.getVertices()[i] );
-                } else {
-                    path.lineTo( poly.getVertices()[i] );
-                }
-            }
-            path.close();
-            path.simplify();
-            ofColor color = getContourAvgColor(k,pixels);
-            path.setColor(color);
-            path.draw();
-        }
-        //contourFinder.draw();
         
-        contourFinder.setInvert(false);
-        contourFinder.findContours(vidPlayer);
-        for (int k = 0; k < contourFinder.getPolylines().size(); k++){
-            ofPath path;
-            ofPolyline poly = contourFinder.getPolyline(k);
-            for( int i = 0; i < poly.getVertices().size(); i++) {
-                if(i == 0) {
-                    path.newSubPath();
-                    path.moveTo(poly.getVertices()[i] );
-                } else {
-                    path.lineTo( poly.getVertices()[i] );
-                }
-            }
-            path.close();
-            path.simplify();
-            ofColor color = getContourAvgColor(k,pixels);
-            path.setColor(color);
-            path.draw();
+        ofBackground(0);
+        
+        ofPixelsRef pixels = vidPlayer.getPixelsRef();
 
+    
+        for(int threshold = 127; threshold >=0; threshold-=30){
+            contourFinder.setThreshold(threshold);
+            contourFinder.setInvert(true);
+            contourFinder.findContours(vidPlayer);
+            for (int k = 0; k < contourFinder.getPolylines().size(); k++){
+                ofPath path;
+                ofPolyline poly = contourFinder.getPolyline(k);
+                for( int i = 0; i < poly.getVertices().size(); i++) {
+                    if(i == 0) {
+                        path.newSubPath();
+                        path.moveTo(poly.getVertices()[i] );
+                    } else {
+                        path.lineTo( poly.getVertices()[i] );
+                    }
+                }
+                path.close();
+                path.simplify();
+                ofColor color = getContourAvgColor(k,pixels);
+                path.setColor(color);
+                path.draw();
+            }
+    
+            contourFinder.setInvert(false);
+            contourFinder.findContours(vidPlayer);
+            for (int k = 0; k < contourFinder.getPolylines().size(); k++){
+                ofPath path;
+                ofPolyline poly = contourFinder.getPolyline(k);
+                for( int i = 0; i < poly.getVertices().size(); i++) {
+                    if(i == 0) {
+                        path.newSubPath();
+                        path.moveTo(poly.getVertices()[i] );
+                    } else {
+                        path.lineTo( poly.getVertices()[i] );
+                    }
+                }
+             path.close();
+             path.simplify();
+             ofColor color = getContourAvgColor(k,pixels);
+             path.setColor(color);
+             path.draw();
+         }
         }
-        //contourFinder.draw();
-    }
-    
-    
-    
-    
+        
+        for(int threshold = 127; threshold <=255; threshold+=30){
+            contourFinder.setThreshold(threshold);
+            contourFinder.setInvert(true);
+            contourFinder.findContours(vidPlayer);
+            for (int k = 0; k < contourFinder.getPolylines().size(); k++){
+                ofPath path;
+                ofPolyline poly = contourFinder.getPolyline(k);
+                for( int i = 0; i < poly.getVertices().size(); i++) {
+                    if(i == 0) {
+                        path.newSubPath();
+                        path.moveTo(poly.getVertices()[i] );
+                    } else {
+                        path.lineTo( poly.getVertices()[i] );
+                    }
+                }
+                path.close();
+                path.simplify();
+                ofColor color = getContourAvgColor(k,pixels);
+                path.setColor(color);
+                path.draw();
+            }
+            
+            contourFinder.setInvert(false);
+            contourFinder.findContours(vidPlayer);
+            for (int k = 0; k < contourFinder.getPolylines().size(); k++){
+                ofPath path;
+                ofPolyline poly = contourFinder.getPolyline(k);
+                for( int i = 0; i < poly.getVertices().size(); i++) {
+                    if(i == 0) {
+                        path.newSubPath();
+                        path.moveTo(poly.getVertices()[i] );
+                    } else {
+                        path.lineTo( poly.getVertices()[i] );
+                    }
+                }
+                path.close();
+                path.simplify();
+                ofColor color = getContourAvgColor(k,pixels);
+                path.setColor(color);
+                path.draw();
+
+            }
+        }
+        
         ofImage grab;
         grab.allocate(ofGetWidth(),ofGetHeight(),OF_IMAGE_COLOR);
         grab.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-    //ofTexture currScreen;
-    //currScreen.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
-    //currScreen.loadScreenData(0,0, ofGetWidth(), ofGetHeight());
-    
-        //grab.draw(0, 0);
-    
-    //currScreen.draw(0, ofGetHeight(), ofGetWidth(), -ofGetHeight());
-    //currScreen.loadScreenData(0,0, ofGetWidth(), ofGetHeight());
     
         grab.bind();
-    //currScreen.bind();
         mesh.draw();
-        grab.unbind();
-    //currScreen.unbind();
         vidRecorder.addFrame(grab.getPixelsRef());
-        
-    //}
+        grab.unbind();
+        //vidRecorder.addFrame(grab.getPixelsRef());
     }
 }
 
