@@ -27,6 +27,8 @@ class testApp : public ofBaseApp{
         ofColor getContourAvgColor(int index, ofPixelsRef pixels);
     
     
+        ofImage grab;
+    
         ofxCv::ContourFinder contourFinder;
         float threshold;
         ofxCv::TrackingColorMode trackingColorMode;

@@ -6,14 +6,15 @@ using namespace cv;
 //--------------------------------------------------------------
 void testApp::setup(){
     cam.initGrabber(ofGetWidth(), ofGetHeight());
-    ofSetVerticalSync(true);
-
     
-	contourFinder.setMinAreaRadius(1);
+	contourFinder.setMinAreaRadius(5);
 	contourFinder.setMaxAreaRadius(min(ofGetWidth(),ofGetHeight())/2.2);
 
     
     ofSetLogLevel(OF_LOG_VERBOSE);
+    
+    grab.allocate(ofGetWidth(),ofGetHeight(),OF_IMAGE_COLOR);
+    grab.clear();
 }
 
 
@@ -117,7 +118,12 @@ void testApp::draw(){
 
             }
         }
+        grab.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
     }
+    else{
+        grab.draw(0,0);
+    }
+    
 }
 
 //--------------------------------------------------------------
