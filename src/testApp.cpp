@@ -239,7 +239,7 @@ void testApp::keyReleased(int key){
                       //vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, ofGetWidth(),ofGetHeight(), 25); // no audio
             //            vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, 0,0,0, sampleRate, channels); // no video
                      // vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), 30, "-vcodec mpeg4 -b 1600k -acodec mp2 -ab 128k -f mpegts udp://192.168.1.147:1234"); // for custom ffmpeg output string (streaming, etc)
-            vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), 30, "-vcodec mpeg4 -b 1000k -acodec mp2 -ab 128k -f mpegts udp://192.168.1.148:1234"); 
+            vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), 30, "-vcodec mpeg4 -b 1000k -acodec mp2 -ab 128k -f mpegts udp://192.168.1.148:1234");
         }
     }
     if(key=='c'){
