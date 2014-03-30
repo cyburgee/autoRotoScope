@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A19891C3-B10F-48B0-A51E-D1F47DD95232</string>
+	<key>IDESourceControlProjectName</key>
+	<string>autoRotoScope</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>146A44D5-C49D-42E7-B859-ED56142BD897</key>
+		<string>https://github.com/cyburgee/autoRotoScope.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>autoRotoScope.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>146A44D5-C49D-42E7-B859-ED56142BD897</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github/cyburgee/Sky.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>146A44D5-C49D-42E7-B859-ED56142BD897</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>146A44D5-C49D-42E7-B859-ED56142BD897</string>
+			<key>IDESourceControlWCCName</key>
+			<string>autoRotoScope</string>
+		</dict>
+	</array>
+</dict>
+</plist>

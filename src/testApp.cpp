@@ -7,12 +7,13 @@ using namespace cv;
 void testApp::setup(){
     ofSetVerticalSync(true);
 
-    vidPlayer.loadMovie("vid/teenconv.mp4");
+    vidPlayer.loadMovie("vid/blowjobconv.mp4");
     
-	contourFinder.setMinAreaRadius(1);
-	contourFinder.setMaxAreaRadius(70);
+	contourFinder.setMinAreaRadius(5);
+    contourFinder.setMaxAreaRadius(75);
+	//contourFinder.setMaxAreaRadius(min(ofGetWidth(),ofGetHeight())/3);
     
-    mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    /*mesh.setMode(OF_PRIMITIVE_TRIANGLES);
 	stepSize = 8;
 	ySteps = vidPlayer.getHeight() / stepSize;
 	xSteps = vidPlayer.getWidth() / stepSize;
@@ -36,7 +37,7 @@ void testApp::setup(){
 			mesh.addIndex(se);
 			mesh.addIndex(sw);
 		}
-	}
+	}*/
 
     
     sampleRate = 44100;
@@ -55,7 +56,6 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-
 }
 
 //--------------------------------------------------------------
@@ -63,7 +63,7 @@ void testApp::draw(){
     
     if(vidPlayer.getCurrentFrame() <= vidPlayer.getTotalNumFrames()) {
         vidPlayer.nextFrame();
-		flow.setWindowSize(8);
+		/*flow.setWindowSize(8);
 		flow.calcOpticalFlow(vidPlayer);
 		int i = 0;
 		float distortionStrength = 4;
@@ -76,7 +76,7 @@ void testApp::draw(){
 				mesh.setVertex(i, position + distortionStrength * offset);
 				i++;
 			}
-		}
+		}*/
         
         ofBackground(0);
         
@@ -174,11 +174,12 @@ void testApp::draw(){
         grab.allocate(ofGetWidth(),ofGetHeight(),OF_IMAGE_COLOR);
         grab.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
     
-        grab.bind();
-        mesh.draw();
-        vidRecorder.addFrame(grab.getPixelsRef());
-        grab.unbind();
+        //grab.bind();
+        //mesh.draw();
+        //grab.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
         //vidRecorder.addFrame(grab.getPixelsRef());
+        //grab.unbind();
+        vidRecorder.addFrame(grab.getPixelsRef());
     }
 }
 
@@ -194,22 +195,21 @@ ofColor testApp::getContourAvgColor(int index, ofPixelsRef pixels) {
     int gg = 0;
     int bb = 0;
     float cnt=0;
-    //int sampStepX = (rand() % (int)ceil(rect.getWidth()/5) + 1);
-    //int sampStepY = (rand() % (int)ceil(rect.getHeight()/5) + 1);
     for (int xx = cx; xx <= cx+rect.getWidth(); xx+= (rand() % (int)ceil(rect.getWidth()/5) + 1)){
         for (int yy = cy; yy <= cy+rect.getWidth(); yy+= (rand() % (int)ceil(rect.getHeight()/5) + 1)){
             int cxx = xx;
             int cyy = yy;
-            rr = rr + pixels.getColor(cxx, cyy).r;
-            gg = gg + pixels.getColor(cxx,cyy).g;
-            bb = bb + pixels.getColor(cxx, cyy).b;
+            ofColor current = pixels.getColor(cxx,cyy);
+            rr = rr + current.r;
+            gg = gg + current.g;
+            bb = bb + current.b;
             cnt++;
         }
     }
     rr = int(rr/cnt);
     gg = int(gg/cnt);
     bb = int(bb/cnt);
-
+    
     return ofColor(rr,gg,bb);
 }
 
@@ -236,9 +236,10 @@ void testApp::keyReleased(int key){
         bRecording = !bRecording;
         if(bRecording && !vidRecorder.isInitialized()) {
             //vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, ofGetWidth(), ofGetHeight(), 25, sampleRate, channels);
-                      vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, ofGetWidth(),ofGetHeight(), 25); // no audio
+                      //vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, ofGetWidth(),ofGetHeight(), 25); // no audio
             //            vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, 0,0,0, sampleRate, channels); // no video
-            //          vidRecorder.setupCustomOutput(vidGrabber.getWidth(), vidGrabber.getHeight(), 30, sampleRate, channels, "-vcodec mpeg4 -b 1600k -acodec mp2 -ab 128k -f mpegts udp://localhost:1234"); // for custom ffmpeg output string (streaming, etc)
+                     // vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), 30, "-vcodec mpeg4 -b 1600k -acodec mp2 -ab 128k -f mpegts udp://192.168.1.147:1234"); // for custom ffmpeg output string (streaming, etc)
+            vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), 30, "-vcodec mpeg4 -b 1000k -acodec mp2 -ab 128k -f mpegts udp://192.168.1.148:1234"); 
         }
     }
     if(key=='c'){
@@ -247,6 +248,7 @@ void testApp::keyReleased(int key){
     }
 
 }
+
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
