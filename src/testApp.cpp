@@ -144,9 +144,10 @@ ofColor testApp::getContourAvgColor(int index, ofPixelsRef pixels) {
         for (int yy = cy; yy <= cy+rect.getWidth(); yy+= (rand() % (int)ceil(rect.getHeight()/5) + 1)){
             int cxx = xx;
             int cyy = yy;
-            rr = rr + pixels.getColor(cxx, cyy).r;
-            gg = gg + pixels.getColor(cxx,cyy).g;
-            bb = bb + pixels.getColor(cxx, cyy).b;
+            ofColor current = pixels.getColor(cxx,cyy);
+            rr = rr + current.r;
+            gg = gg + current.g;
+            bb = bb + current.b;
             cnt++;
         }
     }
