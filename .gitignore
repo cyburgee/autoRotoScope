@@ -1,2 +1,20 @@
 
 *.mp4
+
+*.xccheckout
+
+*.xccheckout
+
+bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
+
+*.xcuserstate
+
+bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
+
+*.xccheckout
+
+autoRotoScope.xcodeproj/project.xcworkspace/xcshareddata/autoRotoScope.xccheckout
+
+autoRotoScope.xcodeproj/project.xcworkspace/xcuserdata/ceburger.xcuserdatad/UserInterfaceState.xcuserstate
+
+bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
