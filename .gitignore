@@ -1,2 +1,8 @@
 
+bin/data/ofxarpipe0
+
+bin/data/ofxvrpipe0
+
 *.mp4
+
+.gitignore~
