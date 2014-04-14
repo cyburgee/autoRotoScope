@@ -3,11 +3,7 @@
 
 *.xccheckout
 
-*.xccheckout
-
 bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
-
-*.xcuserstate
 
 bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
 
@@ -15,6 +11,16 @@ bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
 
 autoRotoScope.xcodeproj/project.xcworkspace/xcshareddata/autoRotoScope.xccheckout
 
+bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
+
+*.xcuserstate
+
+bin/data/ofxarpipe0
+
+bin/data/ofxvrpipe0
+
 autoRotoScope.xcodeproj/project.xcworkspace/xcuserdata/ceburger.xcuserdatad/UserInterfaceState.xcuserstate
 
-bin/autoRotoScopeDebug.app/Contents/MacOS/autoRotoScopeDebug
+*.xcuserstate
+
+autoRotoScope.xcodeproj/project.xcworkspace/xcuserdata/ceburger.xcuserdatad/UserInterfaceState.xcuserstate
