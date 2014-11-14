@@ -24,3 +24,5 @@ autoRotoScope.xcodeproj/project.xcworkspace/xcuserdata/ceburger.xcuserdatad/User
 *.xcuserstate
 
 autoRotoScope.xcodeproj/project.xcworkspace/xcuserdata/ceburger.xcuserdatad/UserInterfaceState.xcuserstate
+
+.gitignore~
